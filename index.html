@@ -209,6 +209,9 @@
                 <button class="tab" data-filter="ocr">
                     通用能力<span class="tab-count" id="count-ocr"></span>
                 </button>
+                <button class="tab tab-subtle" data-filter="other">
+                    其他<span class="tab-count" id="count-other"></span>
+                </button>
             </div>
         </nav>
 
@@ -268,7 +271,7 @@
             }
             // 尝试 fetch 获取可能更新的数据
             try {
-                const resp = await fetch('data/articles.json?v=3');
+                const resp = await fetch('data/articles.json?v=4');
                 if (resp.ok) {
                     const fresh = await resp.json();
                     if (fresh.length) articles = fresh;
@@ -281,8 +284,8 @@
         let currentFilter = 'all';
         const grid = document.getElementById('article-grid');
         const emptyState = document.getElementById('empty-state');
-        const TAG_NAMES = { model: '大模型前沿', skill: '实用Skills', compute: '算力动态', ocr: '通用能力' };
-        const TAG_CLASSES = { model: 'model', skill: 'skill', compute: 'compute', ocr: 'ocr' };
+        const TAG_NAMES = { model: '大模型前沿', skill: '实用Skills', compute: '算力动态', ocr: '通用能力', other: '其他' };
+        const TAG_CLASSES = { model: 'model', skill: 'skill', compute: 'compute', ocr: 'ocr', other: 'other' };
 
         function renderAll() {
             const filtered = currentFilter === 'all'
@@ -314,6 +317,7 @@
             document.getElementById('count-skill').textContent = `(${articles.filter(a=>a.tags.includes('skill')).length})`;
             document.getElementById('count-compute').textContent = `(${articles.filter(a=>a.tags.includes('compute')).length})`;
             document.getElementById('count-ocr').textContent = `(${articles.filter(a=>a.tags.includes('ocr')).length})`;
+            document.getElementById('count-other').textContent = `(${articles.filter(a=>a.tags.includes('other')).length})`;
         }
 
         function renderCard(a) {

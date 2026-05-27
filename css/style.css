@@ -12,10 +12,12 @@
     --tag-skill: #0D9488;
     --tag-compute: #7C3AED;
     --tag-ocr: #DC2626;
+    --tag-other: #94A3B8;
     --tag-model-bg: #EFF6FF;
     --tag-skill-bg: #F0FDFA;
     --tag-compute-bg: #F5F3FF;
     --tag-ocr-bg: #FEF2F2;
+    --tag-other-bg: #F8FAFC;
     --hero-bg: #0F172A;
 }
 
@@ -152,6 +154,18 @@ body {
     margin-left: 4px;
 }
 
+.tab-subtle {
+    font-size: 0.78rem;
+    color: #B8C0CC;
+    letter-spacing: 1px;
+}
+.tab-subtle:hover { color: #94A3B8; }
+.tab-subtle.active {
+    color: #94A3B8;
+    border-bottom-color: #CBD5E1;
+    font-weight: 500;
+}
+
 /* ====== WATERFALL GRID ====== */
 .content-area {
     padding: 24px;
@@ -208,6 +222,7 @@ body {
 .card-tag.skill { color: var(--tag-skill); background: var(--tag-skill-bg); }
 .card-tag.compute { color: var(--tag-compute); background: var(--tag-compute-bg); }
 .card-tag.ocr { color: var(--tag-ocr); background: var(--tag-ocr-bg); }
+.card-tag.other { color: var(--tag-other); background: var(--tag-other-bg); }
 
 .card-title {
     font-size: 1rem;
