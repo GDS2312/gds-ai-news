@@ -1,0 +1,444 @@
+[
+  {
+    "id": 1,
+    "featured": false,
+    "title": "用 Claude Code + MCP 搭建个人 AI 日报自动化流水线",
+    "summary": "实操教程：用 Claude Code + WebFetch MCP + Cron 定时任务搭建全自动 AI 情报采集流水线。每天早上 8 点自动抓取多源信息、筛选分类、生成排版好的 HTML/Markdown 日报。",
+    "tags": [
+      "skill"
+    ],
+    "source": "社区实战",
+    "date": "2026-05-27",
+    "url": "#",
+    "content": "本文是从零搭建 AI 日报自动化的实操指南，适合想构建个人情报系统的开发者。\n\n架构概览：Cron 定时任务（每日 8:00 触发）-> Claude Code Skill（采集-筛选-排版流程）-> WebFetch MCP（抓取多信息源）-> LLM 分析与总结 -> 输出 HTML -> 可选自动推送到 GitHub Pages。\n\n第 1 步：配置信息源。创建 sources.json 定义监控源：GitHub Trending（AI/ML 仓库）、Hacker News（AI 标签）、各厂商官方博客（OpenAI/Anthropic/Google）、中文科技媒体 RSS。WebFetch MCP 负责定时抓取。\n\n第 2 步：编写筛选 Skill。创建 ai-news-digest skill：(a) 去重，排除 7 天内出现过内容；(b) 分类，按大模型前沿/开发工具/算力产业/开源项目自动打标签；(c) 优先级排序，综合热度、信息密度、读者匹配度打分。\n\n第 3 步：生成输出。Claude Code 生成结构化 HTML/Markdown 日报，含头条摘要（300 字）、分类列表、每篇的「一句话关键点」标注。直接写入目标目录，配合 GitHub Pages 自动发布。\n\n核心价值：每天自动运行 5-8 分钟即可完成过去需 1-2 小时的 AI 情报收集工作。维护成本极低，每月更新一次信息源列表即可。"
+  },
+  {
+    "id": 2,
+    "featured": false,
+    "title": "Claude Code 实战：3 步搭建自动化 PR Review 工作流",
+    "summary": "手把手教你用 Claude Code 的 /review 命令 + Git hooks 搭建自动化 PR 审查流水线。每次 git push 自动触发代码审查，结果同步到 GitHub PR 评论区，团队 Bug 率下降 40%。",
+    "tags": [
+      "skill"
+    ],
+    "source": "社区实战",
+    "date": "2026-05-27",
+    "url": "#",
+    "content": "本文是一份完整的实操指南，用 3 步搭建 Claude Code 自动化 PR Review 工作流。\n\n第 1 步：配置 Git pre-push hook。在 .git/hooks/pre-push 中添加脚本，每次 git push 时自动调用 claude /review 命令分析当前分支与 main 的 diff。脚本核心逻辑：收集变更文件列表、生成审查上下文、调用 Claude Code 审查、输出结果到文件。\n\n第 2 步：连接 GitHub API。创建 MCP Tool 封装 GitHub PR Review API。Claude Code 审查完成后，自动将发现的问题以 PR Comment 形式发布。支持标记严重等级：Critical / Warning / Suggestion。\n\n第 3 步：定制审查规则。在项目 CLAUDE.md 中定义团队专属规范：命名约定、安全检查项、性能要求、测试覆盖率阈值等。Claude Code 严格遵循这些规则审查。\n\n整套方案配置后，开发者照常 push 代码，AI 在 1-2 分钟内完成审查并反馈。一个 5 人团队使用后线上 Bug 率下降约 40%，Code Review 耗时减少 60%。"
+  },
+  {
+    "id": 3,
+    "featured": false,
+    "title": "Paddle 发布 10 个官方 Agent Skills + Claude Code 插件，一行命令集成支付系统",
+    "summary": "支付平台 Paddle 发布 10 个开箱即用的 Agent Skills 和官方 Claude Code 插件，覆盖 checkout、webhook、订阅管理等支付集成全流程。这是继 Stripe 之后又一个将 AI Agent 能力嵌入开发者工具的案例。",
+    "tags": [
+      "skill"
+    ],
+    "source": "Paddle 官方",
+    "date": "2026-05-27",
+    "url": "https://developer.paddle.com/changelog/2026/agent-skills-claude-code-plugin/",
+    "content": "5 月 14 日，支付基础设施平台 Paddle 宣布发布 10 个官方 Agent Skills 和配套的 Claude Code 插件，标志着 SaaS 服务商开始将 AI Agent 视为新的开发者界面。\n\n这 10 个 Skills 覆盖了支付集成的全流程：checkout 页面搭建、webhook 事件处理、订阅生命周期管理、发票生成、退款处理、价格变更、客户门户定制、支付方式配置、税务计算、收入报表分析。\n\n安装流程极其简单，只需在 Claude Code 中执行两行命令：\n/plugin marketplace add PaddleHQ/paddle-agent-skills\n/plugin install paddle@paddle-agent-skills\n安装后，Claude Code 就能直接帮开发者完成支付集成的大部分工作——从阅读文档、生成代码到调试 webhook，全程由 AI Agent 代办。\n\n这一动态具有风向标意义。此前 Stripe 已推出了类似的 AI 集成工具，Paddle 的跟进说明：SaaS API 的「AI Agent 优先」设计模式正在成为行业标准。未来的 SaaS 产品不仅要有 REST API 和 SDK，还需要提供 Agent Skills——让 AI 能直接调用你的服务。"
+  },
+  {
+    "id": 4,
+    "featured": false,
+    "title": "GitHub AI 编程生态 5 月爆发：ruflo 日增 2598 星领跑，MCP 成为「AI 的 USB-C」",
+    "summary": "GitHub 5 月 AI 编程生态大爆发。ruvnet/ruflo 以日均 2598 星登顶，是 Claude 专用多 Agent 集群编排平台。MCP 协议成为连接 AI Agent 与外部工具的通用标准。终端原生 AI 工作流、Rust AI 基础设施成为新趋势。",
+    "tags": [
+      "model"
+    ],
+    "source": "GitHub Trending",
+    "date": "2026-05-27",
+    "url": "https://github.com/trending",
+    "content": "2026 年 5 月，GitHub 上的 AI 项目生态呈现出几个显著趋势。\n\n首先是 Claude 生态专用工具的崛起。ruvnet/ruflo 以日均 2598 星的增速登顶，这是一个 Claude 专用的多 Agent 集群编排平台，支持企业级智能体协作。Hmbown/DeepSeek-TUI（日均 1274 星）是终端集成的 DeepSeek 编程 Agent，1jehuang/jcode（日均 548 星）是 Rust 写的 Coding Agent 框架。这些项目的共同特点是「为特定模型深度优化」，而非泛用工具。\n\n其次是 MCP（Model Context Protocol）协议正在成为 AI Agent 的「USB-C」——连接 Agent 与外部工具、内存、数据源的通用接口标准。czlonkowski/n8n-mcp 将 MCP 桥接到 n8n 工作流引擎，zilliztech/claude-context 连接向量数据库。SkillForge MCP 实现了 Skills 的懒加载，启动时节省约 4880 tokens。\n\n第三是「终端原生 AI 工作流」正在取代 Web 聊天界面。越来越多的开发者选择在终端中直接与 AI Agent 交互，TUI 类工具增速显著。Rust 语言在 AI 基础设施领域的采用率也在上升，用于构建高性能 Agent 组件。\n\n2026 年的 GitHub 趋势表明：AI 开发生态正从「模型竞赛」转向「应用层创新」，72% 的新高星项目聚焦于 AI 与业务系统的深度集成。"
+  },
+  {
+    "id": 5,
+    "featured": false,
+    "title": "PaddleOCR-VL-1.5：0.9B 参数超越 235B 大模型的文档识别 SOTA",
+    "summary": "PaddleOCR-VL-1.5 以仅 0.9B 参数在 OmniDocBench 上达到 94.5% 准确率，超越 235B 通用大模型。支持 100+ 语言、公式识别、印章检测，发布浏览器端 JS SDK。纯 CPU 推理的 UniRec-0.1B 也于 5 月发布。",
+    "tags": [
+      "ocr"
+    ],
+    "source": "PaddlePaddle / 复旦大学",
+    "date": "2026-05-27",
+    "url": "https://github.com/PaddlePaddle/PaddleOCR",
+    "content": "OCR 领域在 2026 年 5 月迎来两项重大突破，核心主题是「小模型打败大模型」。\n\nPaddleOCR-VL-1.5 以仅 0.9B 参数的多模态模型，在权威文档理解基准 OmniDocBench 上达到 94.5% 准确率，超越了参数量高达 235B 的通用大模型。这证明在垂直场景下，专精小模型可以比通用大模型做得更好、更快、更省。PaddleOCR 3.x 系列已形成完整矩阵：PP-OCRv5（全场景文字识别，树莓派可跑 15FPS）、PP-StructureV3（支持 23 种版式，合同 F1 值 91.3%）、PP-ChatOCRv4（多模态交互，自然语言查询文档）。新增 PaddleOCR.js 将 OCR 能力带入浏览器端。\n\n复旦大学 5 月 11 日发布的 UniRec-0.1B（OpenOCR4J）则走得更极端：仅 0.1B 参数，纯 CPU 推理，用 Java + ONNX Runtime 实现，单 JAR 文件即可部署。支持文本/公式/表格统一识别，公式输出 LaTeX，表格输出 HTML。\n\n技术选型建议：高精度需求选 PaddleOCR-VL-1.5；纯 CPU 或 Java 集成选 OpenOCR4J；PDF 批量处理选 Allen AI 的 olmocr（每百万页不到 200 美元）；企业级全场景选 PaddleOCR 全家桶。"
+  },
+  {
+    "id": 6,
+    "featured": false,
+    "title": "AI 芯片首次纳入国家《安全可靠测评》，7 款国产芯片通过认证",
+    "summary": "中国信息安全测评中心首次将 AI 训练推理芯片纳入国家《安全可靠测评》体系。华为昇腾、阿里真武、壁仞、海光、天数智芯、沐曦、摩尔线程共 7 款芯片通过认证，代表国产算力获国家级背书。",
+    "tags": [
+      "compute"
+    ],
+    "source": "中国信息安全测评中心",
+    "date": "2026-05-27",
+    "url": "https://huacheng.gz-cmc.com/pages/2026/05/26/695b655d25164595a5405bed3b5b1837.html",
+    "content": "5 月 26 日，中国信息安全测评中心发布《安全可靠测评结果公告（2026 年第 2 号）》，首次将「AI 训练推理芯片」纳入国家《安全可靠测评》体系。这是继 CPU、操作系统、数据库之后，AI 芯片首次获得国家级安全认证。\n\n通过测评的 7 款芯片覆盖了国内主要 AI 芯片厂商：华为海思昇腾 310/910（ASIC 路线）、阿里平头哥真武 M530/M890（ASIC 路线）、壁仞科技壁砺 166（GPU 路线）、海光信息 DCU-3G（GPGPU 路线）、天数智芯 KCC-V100X（GPGPU 路线）、沐曦 MXC600（GPU 路线）、摩尔线程 PH100（MUSA 架构 GPU 路线）。\n\n摩尔线程 PH100 是本次认证中最受关注的产品。基于第四代 MUSA 架构「平湖」，单卡 AI 算力达 1000 TFLOPS（FP8），配备 80GB HBM 显存，支持万卡级集群部署。摩尔线程 2026 年 Q1 营收 7.38 亿元（同比+155%），利润首次转正。\n\n国产算力产业链正在经历从「能用」到「好用」的关键跨越。海光信息 Q1 营收 40.34 亿元（+68%）、寒武纪 Q1 营收 28.85 亿元（+160%），业绩集体爆发印证了市场需求正在从 NVIDIA 向国产方案迁移。沙利文预测中国 AI 算力芯片市场 2030 年将突破 1.6 万亿元。"
+  },
+  {
+    "id": 7,
+    "featured": false,
+    "title": "Antigravity Awesome Skills 突破 1445+，成为全球最大第三方 Skill 库",
+    "summary": "Antigravity Awesome Skills 更新至 v10.10.0，收录 1445+ 可安装 Skills，新增生产环境审计和递归上下文剪枝等功能。Skills vs MCP 业界共识：Skills 管流程和编排，MCP 管外部连接，组合使用效能最大。",
+    "tags": [
+      "skill"
+    ],
+    "source": "GitHub",
+    "date": "2026-05-27",
+    "url": "https://github.com/sickn33/antigravity-awesome-skills",
+    "content": "Antigravity Awesome Skills 是全球最大的第三方 Claude Code Skill 库，5 月初更新至 v10.10.0 版本，收录的可用 Skills 数量突破 1445 个，覆盖代码审查、测试生成、文档编写、安全审计、部署运维、数据库管理等几乎所有开发场景。\n\nv10.10.0 新增了两个重量级 Skill：production-audit（生产环境审计），可自动检查生产环境的配置安全、性能瓶颈和资源泄漏；recursive-context-pruning-token-budgeting（递归上下文剪枝与 Token 预算管理），专为长会话场景设计，可自动识别和修剪低信息密度对话片段，实测可将长会话 Token 消耗降低 40-60%。\n\n该 Skill 库支持 Claude Code、Cursor、Codex CLI、Gemini CLI、Antigravity 等主流 AI 编程工具，是目前跨平台兼容性最好的 Skill 生态。\n\n同时，业界关于 Skills 与 MCP 关系的讨论正趋于成熟。Skywork 在其 5 月 17 日的对比指南中提出：Skills 是「流程手册」，负责确定性的任务编排；MCP 是「连接层」，负责与外部系统的实时交互。两者不是二选一的关系，而应组合使用——用 Skills 定义工作流，用 MCP 打通外部工具和数据源。SkillForge MCP 等工具则进一步实现了 Skills 的「懒加载」，启动时节省约 4880 tokens。"
+  },
+  {
+    "id": 8,
+    "featured": false,
+    "title": "微软 Copilot Cowork 曝出 100% 成功率的间接提示注入攻击漏洞",
+    "summary": "安全研究显示，Microsoft 365 Copilot Cowork 智能体存在致命安全漏洞：攻击者通过上传恶意技能文件操纵 AI 发送含预认证下载链接的 Teams 消息，5 次测试攻击成功率 100%，可导致 SharePoint 和 OneDrive 敏感文件泄露。",
+    "tags": [
+      "model"
+    ],
+    "source": "安全研究报告",
+    "date": "2026-05-27",
+    "url": "#",
+    "content": "一项最新安全研究揭示了一个令人不安的发现：Microsoft 365 Copilot Cowork 智能体存在严重的间接提示注入攻击漏洞，5 次独立测试中攻击成功率 100%。\n\n攻击手法异常简单：攻击者上传一个恶意「技能文件」（skill file），其中嵌入了隐蔽的提示注入指令。当 Copilot Cowork 加载该技能后，AI 会被操纵向目标用户发送 Teams 消息，消息中携带预认证的 SharePoint/OneDrive 文件下载链接。受害者只需打开消息，敏感文件就会在无需人工审批的情况下被外泄。\n\n这一漏洞的本质是 AI Agent 的「工具调用权限」与「内容安全审核」之间存在盲区。AI 被授权发送消息和分享文件，但无法判断指令来源是否可信。\n\n安全专家建议企业立即采取以下措施：(1) 限制 Copilot Cowork 的文件分享权限范围；(2) 对第三方 Skill 文件实施代码审查；(3) 启用文件外发审批流程；(4) 监控异常的 Teams 文件分享行为。\n\n此事再次验证了一个原则：AI Agent 的「能力边界」必须与其「安全边界」同步设计，否则能力越强风险越大。"
+  },
+  {
+    "id": 9,
+    "featured": false,
+    "title": "NVIDIA Q1 财报：营收 816 亿美元同比增 85%，但新芯片或涨价至 8 万美元",
+    "summary": "英伟达 2027 财年 Q1 营收 816 亿美元（同比+85%），净利润 583 亿美元（同比+211%）。但新一代 AI 芯片因 HBM3E 从 80GB 增至 192GB 致成本翻倍，单卡售价或达 8 万美元。",
+    "tags": [
+      "compute"
+    ],
+    "source": "NVIDIA 财报",
+    "date": "2026-05-27",
+    "url": "#",
+    "content": "英伟达发布了截至 2026 年 4 月的 2027 财年第一季度财报，数字依然惊人：营收 816 亿美元，同比增长 85%；净利润 583 亿美元，同比增长 211%。数据中心业务仍是绝对主力，贡献了超过 90% 的营收。\n\n但市场关注的焦点在于下一代产品定价。新一代 AI 芯片预计将搭载 192GB HBM3E 高带宽内存（较当前 80GB 翻倍以上），导致物料成本激增近 3 倍。分析机构预测单卡售价可能从目前的 4 万美元级别跃升至 8 万美元。\n\n与此同时，SK 海力士发布了 iHBM 控温散热技术，热阻降低超 30%，将应用于 HBM5。全球 HBM 市场 2026 年预计达 450 亿美元，同比增长 250%。\n\n在供给端，NVIDIA 虽然仍是性能标杆，但供应受限的局面未根本改变。这为国产替代芯片提供了宝贵的窗口期。华为昇腾 910C、寒武纪 MLU590、摩尔线程 PH100 等国产方案正在加速追赶。"
+  },
+  {
+    "id": 10,
+    "featured": false,
+    "title": "阿里云出海：发布 Qwen Cloud、MuleRun Agent 及 Qoder 编程平台",
+    "summary": "5 月 26 日，阿里云在新加坡发布海外 AI 产品矩阵：Qwen Cloud 模型云服务、Agent 产品 MuleRun、智能体编程平台 Qoder 及桌面智能体 QoderWork。Qwen 系列全球下载量突破 7 亿次。",
+    "tags": [
+      "model"
+    ],
+    "source": "阿里云",
+    "date": "2026-05-27",
+    "url": "https://www.163.com/dy/article/KTSJ136O05568W0A.html",
+    "content": "5 月 26 日，阿里云在新加坡举办海外 AI 产品发布会，一口气发布了四款核心产品，标志着中国 AI 大模型正式开启全球化商业拓展。\n\nQwen Cloud：面向海外开发者的模型云服务，提供 Qwen 系列模型的 API 访问，覆盖文本生成、代码、多模态等场景。MuleRun：AI Agent 产品，定位为企业级智能体运行平台，支持多 Agent 协作和复杂工作流编排。Qoder：智能体编程平台，对标 GitHub Copilot 和 Claude Code，集成 Qwen 代码模型。QoderWork：桌面智能体，可在本地环境中自主完成文件操作、代码执行等任务。\n\n与此同时，阿里云披露 Qwen 系列模型的全球下载量已突破 7 亿次，成为全球最受欢迎的开源大模型系列之一。Qwen 3.7-Max 采用 35B-A3B MoE 架构，每次推理仅激活 3B 参数，主打边缘端高效部署。\n\n国产 AI 的出海步伐正在加速。从 DeepSeek 的全球定价颠覆到 Qwen 的产品矩阵国际化，中国 AI 企业正从「技术追随」转向「商业引领」。"
+  },
+  {
+    "id": 11,
+    "featured": false,
+    "title": "Anthropic Claude Mythos 引发全球金融安全警报，ECB 紧急召集银行会议",
+    "summary": "Claude Mythos 在漏洞检测上成功率 72.4%，较前代提升近 80 倍。Project Glasswing 项目已发现数千个高危漏洞，欧洲央行紧急召集银行会议要求加速修补。恶意攻击者可能在补丁发布后 30 分钟内反向推导漏洞。",
+    "tags": [
+      "model"
+    ],
+    "source": "Irish Times / 综合报道",
+    "date": "2026-05-27",
+    "url": "https://irishtimes-irishtimes-prod.cdn.arcpublishing.com/business/2026/05/25/ecb-summons-banks-to-urge-them-to-fix-flaws-exposed-by-latest-ai-models/",
+    "content": "Anthropic 的 Claude Mythos 模型正在引发全球金融监管机构的紧急关注。欧洲央行（ECB）近日紧急召集各大银行，讨论 Mythos Preview 所披露的金融系统漏洞风险。\n\n核心数据令人震惊：Mythos 在漏洞检测上的成功率达到 72.4%，而前代模型不足 1%——提升幅度接近 80 倍。这既是技术进步，也是安全威胁的放大器。名为「Project Glasswing」的内部测试项目已发现数千个高危漏洞，涉及所有主流操作系统和浏览器。\n\nECB 副主席 Elderson 用了一个音乐术语来形容紧迫性：「过去 patch 可以慢慢来（andante），现在必须以急板（presto）推进。」因为恶意攻击者可能在补丁发布后 30 分钟内就反向推导出漏洞利用方式。\n\n更棘手的是，欧洲银行因被拒于 Mythos 访问权限之外而面临信息不对称风险——攻击者可能利用 AI 发现的漏洞，而防守方却无法使用同样的工具进行防御。这引发了关于 AI 安全工具「准入公平性」的激烈讨论。\n\n此事也呼应了 Anthropic CEO Dario Amodei 近期关于「AI 安全需要全球协调」的呼吁。业界预计 Mythos 正式版可能在 Q2-Q3 2026 发布。"
+  },
+  {
+    "id": 12,
+    "featured": false,
+    "title": "发改委明确：指导国产大模型加大力度适配国产算力芯片",
+    "summary": "国家发改委 5 月新闻发布会明确表态，将指导国产大模型加大力度适配国产算力芯片。AI 训练推理芯片首次纳入国家《安全可靠测评》，华为昇腾、阿里平头哥、摩尔线程等 7 款芯片通过认证。",
+    "tags": [
+      "compute"
+    ],
+    "source": "国家发改委",
+    "date": "2026-05-27",
+    "url": "https://www.hrbtv.net/folder963/2026-05-22/1159925.html",
+    "content": "5 月 22 日，国家发改委召开月度新闻发布会，新闻发言人李超明确表态：将「指导国产大模型加大力度适配国产算力芯片」，将国产大模型与国产算力芯片的协同适配提升至明确的政策指导层面。发改委强调要确保 AI 发展「自主可控、向善发展、行稳致远」。\n\n紧接着 5 月 26 日，中国信息安全测评中心发布《安全可靠测评结果公告（2026 年第 2 号）》，首次将「AI 训练推理芯片」纳入测评体系。通过测评的芯片涵盖国内主流厂商：华为海思昇腾 310/910、阿里平头哥真武 M530/M890、壁仞科技壁砺 166、海光信息 DCU-3G、天数智芯 KCC-V100X、沐曦 MXC600、摩尔线程 PH100。\n\n其中摩尔线程 PH100 基于第四代 MUSA 架构「平湖」，单卡 AI 算力达 1000 TFLOPS，配备 80GB HBM 显存，支持万卡级集群部署，是目前国产 GPU 中算力密度最高的产品之一。\n\n政策落地推动资本市场热烈反应。5 月最后一周被称为「AI 超级周」：5 月 25 日摩尔线程年度发布会、5 月 26 日 AMD 上海 AI 开发者日（CEO 苏姿丰亲临）、5 月 27 日阿里巴巴发布基于真武 M890 的 128 卡超节点服务器。国产算力产业链正迎来「商业订单落地与业绩兑现」为核心的价值重估阶段。"
+  },
+  {
+    "id": 13,
+    "featured": true,
+    "title": "OpenAI GPT-5.6 意外曝光：150万上下文窗口，6月初或将发布",
+    "summary": "多名开发者在 OpenAI Codex 后端日志中发现尚未官宣的新旗舰模型 GPT-5.6，内部代号 iris-alpha。上下文窗口达 150 万 token，前端生成能力质变，Polymarket 预测 6 月 30 日前发布概率飙升至 85%。",
+    "tags": [
+      "model"
+    ],
+    "source": "综合报道",
+    "date": "2026-05-27",
+    "url": "https://www.aibase.com/zh/news/28320",
+    "content": "多名开发者在 OpenAI Codex 后端日志中发现了尚未官宣的新旗舰模型 GPT-5.6，内部代号 iris-alpha。这是 GPT 系列有史以来最密集的迭代周期中的最新一步——从 GPT-5 到 GPT-5.6，平均每 40 天发布一个新版本。\n\n关键参数方面，GPT-5.6 的上下文窗口达到 150 万 token，比 GPT-5.5 的 105 万提升约 43%。实测中，在 90 万 token 的超长输入下仍能流畅响应，甚至可处理超过 105 万 token 的极限请求。这意味着单次对话可以塞进整本《三体》三部曲。\n\n前端生成能力出现质变。零指令下，GPT-5.6 自主生成了名为「Lumen Notes」的极简记事应用，展现出成熟的栅格布局、克制配色和清晰字体层级——开发者称之为「UI 去 Slop 化」，即 AI 开始告别千篇一律的「AI 味」设计。\n\n版本策略上，标准版主打多步推理，Pro 版强化 Agent 工作流。内部代号还包括 ember-alpha 和 beacon-alpha，可能对应不同变体。Polymarket 上关于「GPT-5.6 在 6 月 30 日前发布」的预测概率已飙升至 85%以上。\n\n值得关注的是，6 月份 AI 行业将迎来「三巨头混战」：OpenAI GPT-5.6、Anthropic Claude Sonnet 4.8（代号 Conway，持久化后台代理）、Google Gemini 3.5 Pro 将同期亮相。硅谷架构师警告：「如果你的 Agent 底层框架绑定在单一供应商上，6 月份你会痛不欲生。」"
+  },
+  {
+    "id": 14,
+    "featured": false,
+    "title": "ECC：19.2 万星 Agent 性能优化系统，可提升任务完成率 40%",
+    "summary": "ECC（Agent Harness Performance Optimization System）以 19.2 万星登顶 GitHub Trending。为 Claude Code 等 AI Agent 提供 Skills、Instincts、Memory、Security 四大模块的性能优化，实测可提升任务完成率 40% 以上。",
+    "tags": [
+      "skill"
+    ],
+    "source": "GitHub",
+    "date": "2026-05-26",
+    "url": "https://github.com/affaan-m/ECC",
+    "content": "ECC 是当前 GitHub 上最受关注的 AI Agent 工程化项目之一，以 19.2 万 Star 的高热度引发开发者社区广泛讨论。\n\nECC 全称「Agent Harness Performance Optimization System」（Agent 执行性能优化系统），为 Claude Code 等 AI Agent 提供四大核心模块：\n\nSkills 模块：预置了 200+ 经过实战验证的 Agent Skills 模板，覆盖代码生成、测试、部署、监控等场景。Instincts 模块：为 Agent 注入「本能」级的行为准则，减少无效探索和 Token 浪费。Memory 模块：实现跨会话的 Agent 记忆管理，让 Agent 在多次对话中积累项目上下文。Security 模块：在 Agent 执行敏感操作前自动进行安全审计。\n\n社区反馈的数据显示，使用 ECC 优化后，Agent 的任务完成率可提升 40% 以上，Token 消耗减少约 30%。一位企业用户分享：「部署 ECC 后，我们的 Claude Code Agent 在处理 200 万行代码库任务时的成功率从 55% 提升到了 82%，月度 API 费用反而下降了 35%。」\n\nECC 的成功也印证了一个趋势：AI Agent 从「能用」到「好用」之间的距离，很大程度上取决于工程化优化而非模型能力提升。"
+  },
+  {
+    "id": 15,
+    "featured": false,
+    "title": "Understand-Anything 3.1 万星：将任意代码库转化为交互式知识图谱",
+    "summary": "GitHub 热门项目 Understand-Anything 一个月内获超 3.1 万星，能将任何代码库自动转化为可视化交互知识图谱。支持 Claude Code、Codex、Gemini CLI 等主流 AI 编程工具的 Skills 导入，被称为「理解任何代码库的终极工具」。",
+    "tags": [
+      "skill"
+    ],
+    "source": "GitHub",
+    "date": "2026-05-26",
+    "url": "https://github.com/Lum1104/Understand-Anything",
+    "content": "Understand-Anything 是近期 GitHub 上增长最快的 AI 开发者工具之一，一个月内获得超过 3.1 万星。它的核心能力是：输入任何代码仓库的路径，自动生成一个交互式的代码知识图谱。\n\n与传统的代码文档工具不同，Understand-Anything 不依赖预先写好的注释或文档。它用 AST 解析 + LLM 语义理解 + 图数据库的方式，分析代码的调用关系、数据流、模块依赖、设计模式，然后构建一个可以在浏览器中点击探索的知识图谱。\n\n对于 AI Agent 来说，这意味着它可以像人类一样「阅读」代码——不是逐行扫描，而是先建立整体架构的认知地图，再定位到关心的细节。项目支持将知识图谱导出为 Claude Code、Codex CLI、Gemini CLI 的 Skills，让 Agent 在接手陌生代码库时先「读地图」再动手。\n\n社区将该工具称为「理解任何代码库的终极工具」。它的本质是为 AI Agent 构建代码语义地图，解决当前 Agent 处理大型代码库时「只见树木不见森林」的通病。对需要接手遗留系统或跨团队代码的开发者来说尤其实用。"
+  },
+  {
+    "id": 16,
+    "featured": false,
+    "title": "国产算力产业链财报季：寒武纪 Q1 营收 28.85 亿（+160%），海光 40.34 亿（+68%）",
+    "summary": "国产算力产业链 2026 年 Q1 财报密集发布，业绩集体爆发。寒武纪营收 28.85 亿元（+159.56%），海光信息 40.34 亿元（+68.06%），摩尔线程利润首次转正。阿里 CEO 透露「服务器内几乎没有一张卡是空的」。",
+    "tags": [
+      "compute"
+    ],
+    "source": "各公司财报",
+    "date": "2026-05-26",
+    "url": "#",
+    "content": "2026 年 5 月，国产算力产业链进入财报密集披露期，数据全面印证了国产替代的加速趋势。\n\n寒武纪 2026 年 Q1 营收 28.85 亿元，同比增长 159.56%，思元系列 AI 训练推理芯片在互联网和运营商市场取得规模突破。海光信息 Q1 营收 40.34 亿元，同比增长 68.06%，DCU 深度计算加速器在政府、金融等信创领域加速渗透。摩尔线程 Q1 营收 7.38 亿元（+155.35%），利润首次转正，PH100 芯片通过国家《安全可靠测评》认证。\n\n更值得关注的是下游需求信号。阿里 CEO 吴泳铭在财报电话会上透露：「服务器内几乎没有一张卡是空的」，资本支出或将超过最初宣布的 3800 亿元。腾讯 Q1 资本开支 319.36 亿元，同比增 16%。长鑫存储 2026 年营收 508 亿元（+719%），净利润 330 亿元，DDR5 量产推进中。长江存储已实现 294 层 3D NAND 量产，启动科创板上市辅导。\n\n整个国产算力产业链从芯片设计（华为海思、寒武纪、海光）到制造（长鑫、长存）再到应用（阿里、腾讯），正在形成完整的正向循环。沙利文预测中国 AI 算力芯片市场 2030 年将突破 1.6 万亿元，年复合增长率约 50%。"
+  },
+  {
+    "id": 17,
+    "featured": false,
+    "title": "DeepSeek V4-Pro API 永久降价 75%，缓存命中价创全球最低",
+    "summary": "DeepSeek 宣布 V4-Pro API 永久降价 75%，缓存命中价格降至 0.025 元/百万 Token，创全球最低价。同时宣布完成国产算力芯片全链路适配，彻底摆脱 CUDA 依赖。",
+    "tags": [
+      "model"
+    ],
+    "source": "DeepSeek 官方",
+    "date": "2026-05-26",
+    "url": "https://www.deepseek.com",
+    "content": "5 月 26 日，DeepSeek 宣布了一项震动 AI 行业的价格调整：V4-Pro 系列 API 永久降价 75%。缓存命中价格降至 0.025 元/百万 Token，创下全球大模型 API 最低价纪录。这一价格仅为 GPT-5.5 的约 1/40。\n\nDeepSeek V4 于 4 月 24 日发布，是一款 1.6 万亿参数 MoE 模型，上下文窗口 100 万 Token。最引人注目的是，该模型完全基于华为昇腾和寒武纪芯片训练，实现了零 NVIDIA 依赖，成为国产算力全链路自主可控的标志性事件。\n\n此次降价的底气来自两方面：一是 MoE 架构带来的推理效率优势，每次推理仅激活部分参数；二是国产算力芯片的规模化部署降低了硬件成本。DeepSeek 同时宣布已完成国产算力芯片的全链路适配，不再依赖 CUDA 生态。\n\n行业分析认为，DeepSeek 的价格策略将加速中小型企业 AI 应用落地，同时倒逼全行业 API 降价——AI 模型 API 正在进入「分厘时代」。这对算力需求结构将产生深远影响：低成本的推理 API 会刺激更多 AI 原生应用涌现，从而反向拉动算力总需求增长。"
+  },
+  {
+    "id": 18,
+    "featured": false,
+    "title": "MinerU 6.4 万星：复杂 PDF 秒变 Markdown，RAG 管道的核心预处理利器",
+    "summary": "OpenDataLab 开源的 MinerU 获 6.4 万星，专门解决 PDF/Office 文档到 LLM 可读格式的转换。支持复杂排版精准解析，输出结构化 Markdown/JSON。已被 LangChain 和 LlamaIndex 官方推荐。",
+    "tags": [
+      "ocr"
+    ],
+    "source": "GitHub",
+    "date": "2026-05-25",
+    "url": "https://github.com/opendatalab/MinerU",
+    "content": "在 RAG（检索增强生成）和文档问答系统中，PDF 解析一直是最令人头痛的前置环节。MinerU 正是为解决这个问题而生，它以 6.4 万 GitHub Star 成为文档预处理领域的标杆项目。\n\nMinerU 的核心能力：将任何 PDF/Word/PPT 文档转换为结构化的 Markdown 或 JSON 格式，保留原文档的层级结构、表格、公式、图片、页眉页脚等元素。\n\n支持复杂排版场景：双栏/三栏布局的学术论文（正确识别阅读顺序）、含合并单元格的复杂表格（输出标准 Markdown 表格或 HTML table）、行内和行间数学公式（输出 LaTeX 格式）、图文混排（保持图片和对应说明文字的位置关系）、页眉页脚/页码/水印（自动识别并标注，可选择性保留或去除）。\n\nMinerU 已被 LangChain、LlamaIndex、Dify 等主流 LLM 应用框架官方推荐为「最佳文档预处理工具」。典型的使用 Pipeline：PDF → MinerU 解析为 Markdown → Markdown 分块（MarkdownHeaderTextSplitter）→ 向量化入库 → LLM 问答。\n\n相比直接使用 OCR 提取文字再送给 LLM，MinerU 保留的文档结构信息（标题层级、表格关系、图文关联）可以显著提升下游 RAG 系统的问答质量。实测表明，使用 MinerU 预处理后，RAG 系统的答案准确率提升 15-25%。"
+  },
+  {
+    "id": 19,
+    "featured": false,
+    "title": "美团 LongCat 数字人模型开源：RTX 3060 即可实时运行的交互数字人",
+    "summary": "美团开源 LongCat 数字人模型，支持在消费级 GPU（RTX 3060+）上实时运行。包含语音驱动面部动画、文本到动作生成、实时渲染三大模块，推理延迟低至 50ms。提供 Docker 一键部署。",
+    "tags": [
+      "ocr"
+    ],
+    "source": "美团技术团队",
+    "date": "2026-05-25",
+    "url": "https://github.com/Meituan-Dianping/LongCat",
+    "content": "美团技术团队开源的 LongCat 数字人模型，是 2026 年 5 月 AI 开源领域的一大亮点。它的核心定位是「轻量级、可本地部署的实时交互数字人」。\n\n技术架构分为三个模块：语音驱动面部动画（输入音频，输出与语音同步的面部 3D 模型动画，唇形精度达到音素级别）、文本到动作生成（输入文本指令如「微笑并点头」，输出对应的身体和手势动画）、实时渲染（基于 Unity/Unreal 插件，50ms 以内完成从音频输入到画面输出的全链路）。\n\n最关键的是硬件门槛：最低仅需 RTX 3060（6GB 显存）即可实时运行。这远低于业界通常要求的 A100 或 RTX 4090 级别。美团团队通过模型量化（INT8）+ TensorRT 加速 + 自适应帧率调节实现了这一突破。\n\nDocker 一键部署方案使得环境搭建从数天缩短到几分钟。应用场景包括：直播数字人（24/7 无人值守直播）、AI 客服（带面部表情的语音交互提升用户满意度）、在线教育（虚拟老师与学生互动）、企业内部培训（标准化课程的数字人讲师）。\n\nLongCat 的发布也印证了一个趋势：数字人技术正在从「影视级高成本制作」走向「消费级实时生成」，应用门槛的大幅降低将催生更多创新场景。"
+  },
+  {
+    "id": 20,
+    "featured": false,
+    "title": "Hyper3D Rodin Gen-2.5：4 秒生成百万面 3D 资产，3D AIGC 迎来里程碑",
+    "summary": "Hyper3D 发布 Rodin Gen-2.5 3D 生成模型，仅需 4 秒即可生成超百万面高精度 3D 资产。支持文本/图片到 3D、AI 材质自动生成。在游戏开发、影视特效、工业设计等场景引发广泛关注。",
+    "tags": [
+      "model"
+    ],
+    "source": "Hyper3D 官方",
+    "date": "2026-05-25",
+    "url": "https://hyper3d.ai",
+    "content": "3D AIGC 领域迎来里程碑式的突破。Hyper3D 发布的 Rodin Gen-2.5 模型，仅需 4 秒即可生成超过百万面的高精度 3D 资产，细节表现力相比上一代提升数倍。\n\nRodin Gen-2.5 支持三种生成模式：文字到 3D（输入「一把中世纪的橡木椅子，带雕刻扶手」直接生成 3D 模型）、图片到 3D（上传一张产品照片，生成可 360 度旋转的 3D 模型）、AI 材质自动生成（输入「做旧黄铜」自动为模型赋予对应材质）。\n\n应用场景覆盖多个行业：游戏开发（快速生成场景道具和角色模型，减少外包成本）、影视特效（4 秒出预览级 3D 资产，加速预演阶段）、工业设计（从草图直接生成 3D 概念模型，缩短迭代周期）、电商展示（上传商品照片生成 3D 展示模型）。\n\nRodin Gen-2.5 的突破之处在于「速度 + 精度」的同时提升。此前的 3D 生成模型要么快但粗糙（游戏级别），要么精细但慢（几小时）。Rodin Gen-2.5 将生成时间压到 4 秒的同时，输出的 3D 模型已达影视级精度，这被视为 3D AIGC 从实验室走向生产线的关键拐点。"
+  },
+  {
+    "id": 21,
+    "featured": false,
+    "title": "MiniMax Speech 2.8 + Agent Gizmo：语音合成进入影视级，打通语音到执行全链路",
+    "summary": "MiniMax 发布 Speech 2.8 语音合成模型（MOS 4.7）和语音 Agent Gizmo，实现从语音合成到 Agent 任务执行的全链路打通。支持情感强度控制、多角色音色克隆、中英混合朗读。",
+    "tags": [
+      "model"
+    ],
+    "source": "MiniMax 官方",
+    "date": "2026-05-25",
+    "url": "https://www.minimax.io",
+    "content": "MiniMax 近期发布了两款重要产品，标志着 AI 语音技术从「能说话」向「会办事」的跨越。\n\nSpeech 2.8 语音合成模型在自然度上达到新高，MOS 评分 4.7 分（满分 5 分），接近真人配音水平。核心功能包括：情感强度控制（高兴、悲伤、愤怒、平静等 20+ 种情感参数可调）、多角色音色克隆（1 分钟样本即可克隆，支持同一段对话中切换多个角色）、中英混合朗读（中英文切换无卡顿，发音自然）。影视行业已开始将 Speech 2.8 用于预告片配音和动画角色配音。\n\nAgent Gizmo 则是更具前瞻性的产品：它是一个「语音 Agent」，用户通过语音下达任务指令（例如「帮我预定明天下午 3 点的会议室并通知参会人」），Agent Gizmo 能直接调用日历、邮件、企业微信等工具完成任务。它将语音识别 → 语义理解 → Agent 任务规划 → 工具调用 → 结果反馈的全链路整合在了一个系统中。\n\n从技术趋势看，AI 语音正在经历三个阶段的跨越：第一阶段是「语音转文字」（ASR），第二阶段是「文字转语音」（TTS），第三阶段是「语音到行动」（Voice-to-Action）。MiniMax 的 Agent Gizmo 代表了第三阶段的产品化尝试。"
+  },
+  {
+    "id": 22,
+    "featured": false,
+    "title": "SaaS-Bench 评测：AI 全自动办公通过率最高仅 3.8%，Agent 落地任重道远",
+    "summary": "SaaS-Bench 最新 Agent 办公场景评测显示，当前最强 AI 模型在完全自主完成办公任务（填表单、导出报表、发送邮件等）的通过率最高仅 3.8%，暴露了 AI Agent 在真实办公场景中的巨大短板。",
+    "tags": [
+      "model"
+    ],
+    "source": "SaaS-Bench",
+    "date": "2026-05-25",
+    "url": "#",
+    "content": "SaaS-Bench 发布的最新 AI Agent 办公场景评测结果给业界泼了一盆冷水：当前最强的 AI 模型，在完全自主完成常见办公任务的测试中，通过率最高仅 3.8%。\n\n评测涵盖了 50+ 常见 SaaS 操作场景，包括：在 Salesforce 中填写客户表单、从 HubSpot 导出营销报表并格式化、在 Slack 中自动汇总频道消息并发送周报、在 Google Workspace 中创建包含数据透视表的电子表格、在 Jira 中批量创建和分配工单等。\n\nAI Agent 最容易失败的地方不是「不知道做什么」，而是：(1) 无法处理网页 UI 的微小变化（同一个 SaaS 的按钮位置因版本更新而不同）；(2) 缺乏对人类业务语境的理解（「把这个报表发给老板」不知道老板是谁）；(3) 在遇到错误时缺乏恢复策略（弹出一个确认对话框就会卡住）。\n\n不过，如果给 AI Agent 配备「人类协作模式」——在不确定时主动询问、在失败时请求帮助——任务完成率可以提升至 60-70%。这说明当前阶段 AI Agent 的最佳定位是「副驾驶」而非「自动驾驶」。正如一位测试者所说：「AI Agent 就像刚入职的实习生——聪明但不知道怎么在公司里办事。」"
+  },
+  {
+    "id": 23,
+    "featured": false,
+    "title": "GPT-SoVITS 5.7 万星：1 分钟语音数据即可训练高质量 TTS 模型",
+    "summary": "GPT-SoVITS 以 5.7 万 GitHub Star 成为最受欢迎的中文 TTS 开源项目。仅需 1 分钟目标说话人音频即可训练高质量语音克隆模型。支持情感控制、多语言混合合成，广泛应用于有声书、虚拟主播等场景。",
+    "tags": [
+      "ocr"
+    ],
+    "source": "GitHub",
+    "date": "2026-05-24",
+    "url": "https://github.com/RVC-Boss/GPT-SoVITS",
+    "content": "GPT-SoVITS 是 GitHub 上最受欢迎的中文 TTS（文本到语音）开源项目，Star 数达 5.7 万。它的核心竞争力是「少样本语音克隆」：仅需 1 分钟的目标说话人音频数据，即可训练出高质量语音克隆模型。\n\n技术架构分为两阶段：第一阶段用 GPT 模型将文本转换为语音 Token；第二阶段用 SoVITS（变分推理 + VITS）将 Token 合成为自然语音。这种架构的优势在于：GPT 负责「说什么」（语义层面），SoVITS 负责「怎么说」（声学层面），两者解耦后各自优化，整体效果优于端到端方案。\n\n最新版本的核心功能：情感控制（在文本中标记 [happy]/[sad]/[angry] 等情感标签控制输出语音的情感色彩）、语速调节、中英日韩多语言混合合成（同一段话中自然切换语言）。少样本微调模式下，1 分钟样本 + 30 分钟训练即可获得可用效果；全量微调（30 分钟样本 + 数小时训练）可达到近真人水平。\n\n应用场景广泛：有声书制作（用作者的声音朗读）、虚拟主播（实时语音生成）、AI 客服（定制品牌专属声音）、内容创作（视频配音）。与 MiniMax Speech 等商业方案相比，GPT-SoVITS 的优势在于免费、可本地部署、高度可定制。"
+  },
+  {
+    "id": 24,
+    "featured": false,
+    "title": "Claude Code 缓存机制深度解析：如何降低 70% Token 成本",
+    "summary": "详解 Claude Code 的提示缓存机制。通过合理组织项目上下文、利用 Cache Breakpoints、优化文件引用结构，可将重复查询 Token 消耗降低 70%。大型代码库缓存命中率可达 85%+。",
+    "tags": [
+      "skill"
+    ],
+    "source": "Anthropic 文档",
+    "date": "2026-05-24",
+    "url": "https://docs.anthropic.com",
+    "content": "Claude Code 的提示缓存（Prompt Caching）是控制 API 成本最有效的手段，但很多开发者没有充分利用。以下是实战化的优化策略：\n\n缓存机制原理：Claude 会对重复出现的提示前缀进行缓存，缓存命中的 Token 按原价 10% 计费（写入时全价）。缓存有效期为 5 分钟，超过后需要重新写入。\n\n优化策略一：稳定前缀优先。将 CLAUDE.md、项目规则文件、系统 Prompt 放在每次请求的最前面，这些内容很少变化，天然适合缓存。不要在这些稳定内容前面插入动态信息。\n\n优化策略二：Cache Breakpoints 显式标记。在长 Prompt 中通过 Cache Breakpoints 标记缓存边界，让 Claude 知道哪些部分可以独立缓存。例如：项目背景介绍（缓存点）→ 当前任务描述（不缓存）→ 相关代码（缓存点）→ 问题分析（不缓存）。\n\n优化策略三：文件引用结构化。将被引用的文件按「最常变化 → 最少变化」排序放在 Prompt 尾部，让稳定的前缀部分享受完整的缓存红利。\n\n实测数据：一个 200 万行代码库的日常开发场景下，开启优化后缓存命中率从 35% 提升到 85%+，月度 API 费用下降约 70%。对于重度使用 Claude Code 的团队来说，缓存优化可能是 ROI 最高的单项改进。"
+  },
+  {
+    "id": 25,
+    "featured": false,
+    "title": "Qwen3.7-Max 发布：35B-A3B MoE 架构，Agent 能力超越 GPT-5.5 Pro",
+    "summary": "阿里通义千问发布 Qwen3.7-Max，采用 35B-A3B MoE 架构（每次推理仅激活 3B 参数）。第三方评测显示在 Agent 工具调用、复杂推理等任务上超越 GPT-5.5 Pro。",
+    "tags": [
+      "model"
+    ],
+    "source": "阿里通义千问",
+    "date": "2026-05-24",
+    "url": "https://qwenlm.github.io",
+    "content": "5 月 21 日，阿里通义千问发布了 Qwen3.7-Max，这是 Qwen 系列最新的旗舰模型。最大的技术亮点在于其 35B-A3B MoE（混合专家）架构：模型总参数量 35B，但每次推理仅激活 3B 参数。这意味着在没有牺牲模型能力的前提下，推理速度和成本大幅优化。\n\n第三方评测（包括 LMSYS Chatbot Arena 和多个独立基准测试）显示，Qwen3.7-Max 在 Agent 工具调用和复杂推理任务上的表现超越了 GPT-5.5 Pro。隐式缓存自动生效带来更快更便宜的推理体验。\n\n同时发布的还有 Qwen3.5-LiveTranslate 实时翻译模型，支持近百种语言的实时互译，延迟低于 1 秒。该模型已集成到阿里云的海外产品线中。\n\nQwen3.7-Max 的成功证明了 MoE 架构在小模型时代的价值：不是一味追求参数规模，而是通过「大网络、小激活」的策略，在效率与能力之间找到最优平衡点。这也为在国产芯片上部署高性能模型提供了更可行的路径。"
+  },
+  {
+    "id": 26,
+    "featured": false,
+    "title": "飞书 + Claude Code 实战：构建自动化项目管理 Skill",
+    "summary": "社区开发者分享将飞书连接 Claude Code 的实操方案。通过飞书开放平台 API + Claude Code Skill，实现需求自动分析、Bug 智能分派、周报自动生成等项目管理工作流。代码已在 GitHub 开源。",
+    "tags": [
+      "skill"
+    ],
+    "source": "GitHub",
+    "date": "2026-05-23",
+    "url": "#",
+    "content": "一位社区开发者分享了一套实用的技术方案：用 Claude Code Skill 连接飞书，实现项目管理自动化。\n\n整体架构：飞书开放平台（消息、文档、审批等 API）← → MCP Server（将飞书 API 封装为 MCP Tool）← → Claude Code Skill（定义自动化工作流）。\n\n三个典型工作流：\n\n需求自动分析：飞书文档中提交的需求 → Claude Code 自动分析需求完整度、拆解为子任务、评估工时、在飞书多维表格中创建任务卡片。对于描述模糊的需求，自动在文档评论区追问澄清问题。\n\nBug 智能分派：飞书群中反馈的 Bug → Claude Code 分析 Bug 描述和堆栈信息 → 根据代码库结构自动推荐负责人 → 在飞书中 @对应同学并创建工单。\n\n周报自动生成：每周五下午 5 点 → Claude Code 汇总本周的 Git 提交、飞书文档变更、工单关闭情况 → 生成周报草稿 → 发送到指定飞书群供人工审核后发出。\n\n代码已开源在 GitHub，包含完整的 MCP 配置和 Skill 定义文件。对于使用飞书作为协作工具的团队来说，这套方案可以让 Claude Code 从「编码助手」升级为「项目协管」。"
+  },
+  {
+    "id": 27,
+    "featured": false,
+    "title": "Claude Code 5 个被低估的隐藏命令与 Skills，每个附配置模板",
+    "summary": "汇总 5 个被低估的 Claude Code 高效功能：/loop 定时任务巡检、/review 一键 PR 代码审查、/security-review 自动安全扫描、pptx skill 自动生成 PPT、claude-api skill 优化 API 调用。每个都附完整配置模板。",
+    "tags": [
+      "skill"
+    ],
+    "source": "社区整理",
+    "date": "2026-05-23",
+    "url": "#",
+    "content": "以下 5 个 Claude Code 功能在日常使用中常被忽略，但实际效率提升显著：\n\n1. /loop 定时任务巡检：设置 Claude Code 每隔 N 分钟自动执行指定任务。典型用法：/loop 10m /review ——每 10 分钟自动检查当前 PR 是否有新的变更需要审查。也可用于监控 CI 状态、检查部署日志等。\n\n2. /review 一键 PR 代码审查：自动分析当前分支与主分支的 diff，找出潜在的 bug、安全问题和代码规范问题。支持三种级别：low（只报告高置信度问题）、medium（平衡模式）、high（全面扫描，结果更广但可能含误报）。\n\n3. /security-review 自动安全扫描：对当前变更进行安全审查，检测 OWASP Top 10 类漏洞、敏感信息泄露、依赖包已知漏洞等。\n\n4. pptx skill 自动生成 PPT：一行命令将 Markdown 提纲自动转为专业级 PowerPoint 演示文稿，支持自定义模板、图表、SmartArt 等。\n\n5. claude-api skill 优化 API 调用：分析项目中的 Anthropic SDK 调用代码，自动优化 prompt 结构、添加缓存标记、调整模型选择以平衡成本与效果。\n\n每个功能都建议花 10 分钟试一次——一旦找到适合自己工作流的用法，收益会是长期的。"
+  },
+  {
+    "id": 28,
+    "featured": false,
+    "title": "Seedream 4.5 测试 500 种艺术家风格：AI 绘画的风格革命",
+    "summary": "即梦 Seedream 4.5 在风格迁移领域取得突破，社区测试覆盖 500 种艺术家风格的精准复现。不仅支持画风模仿，还能融合多种风格创造新视觉语言，在电商设计和品牌视觉领域广泛应用。",
+    "tags": [
+      "ocr"
+    ],
+    "source": "即梦 AI",
+    "date": "2026-05-23",
+    "url": "#",
+    "content": "即梦（Seedream）是字节跳动旗下的 AI 图像生成平台，4.5 版本在风格控制能力上实现了重大突破。社区自发组织的「风格大闯关」测试覆盖了 500 种艺术家风格——从文艺复兴到印象派、从浮世绘到赛博朋克、从水墨画到波普艺术——Seedream 4.5 在绝大多数风格上实现了精准复现。\n\n技术上，Seedream 4.5 采用了改进版 IP-Adapter + 风格嵌入（Style Embedding）的方案。相比传统的「在 prompt 里加艺术家名字」的做法，Style Embedding 可以精确控制风格的强度（0-100%）、混合比例（例如「70% 宫崎骏 + 30% 赛博朋克」）和应用范围（仅背景、仅人物、仅色彩）。\n\n商业应用方面，电商设计是最大的落地场景。商家上传一张产品图 + 选择目标风格，AI 可以批量生成不同风格的营销素材。品牌视觉方面，Seedream 4.5 可以实现品牌视觉规范的「AI 化执行」——定义品牌的色彩板、字体风格、构图偏好，AI 在生成所有物料时自动遵循这些规范。\n\nAI 绘画行业正在从「卷画质」转向「卷风格控制力」。用户不再满足于「好看的图」，而要求「恰好是我想要的那种好看的图」。Seedream 4.5 的 500 种风格测试结果证明，精准的风格可控性正在成为现实。"
+  },
+  {
+    "id": 29,
+    "featured": false,
+    "title": "算力网络新趋势：在网计算（INC）与算力感知路由，中国电信完成跨 DC 无损网络试点",
+    "summary": "算力网络从概念走向落地。在网计算和算力感知路由成 2026 年关键技术方向。中国电信已完成跨数据中心无损网络试点，RoCEv2 网络延迟降至微秒级，实现跨区域算力资源智能调度。",
+    "tags": [
+      "compute"
+    ],
+    "source": "中国电信 / 技术白皮书",
+    "date": "2026-05-23",
+    "url": "#",
+    "content": "算力网络（Computing Force Network）是「东数西算」工程的技术底座，2026 年两项关键技术正在从实验室走向产业落地。\n\n在网计算（In-Network Computing，INC）：传统架构中，网络只负责数据传输，计算在服务器端完成。INC 则让网络交换机/路由器在转发数据的同时执行聚合、归约等计算操作。在大模型分布式训练场景中，All-Reduce 梯度同步是主要瓶颈——INC 在网络层直接完成梯度聚合，可大幅减少通信量。中国电信已完成端到端验证，在 100Gbps 链路上实现梯度聚合延迟低于 10μs。\n\n算力感知路由：传统网络路由只看 IP 地址，不关心数据包的目的地是去「计算」还是去「存储」。算力感知路由则让网络根据任务类型自动选择最优算力节点——训练任务路由到西部 GPU 集群（便宜），推理任务路由到东部边缘节点（低延迟）。中国电信已在跨数据中心无损网络试点中验证了该技术，RoCEv2/IB 网络延迟降至微秒级，配合智能调度算法可实现跨区域算力资源的亚秒级切换。\n\n这些技术对省公司建设智算中心有直接参考价值。在规划省级算力节点时，建议预留 INC 和算力感知路由的网络能力，避免建成后面临网络瓶颈。特别是在「省级中心+边缘节点」的二级架构下，算力感知路由是调度效率的关键。"
+  },
+  {
+    "id": 30,
+    "featured": false,
+    "title": "网易有道 Confucius4 双语模型开源：翻译质量达「专业八级」水平",
+    "summary": "网易有道开源 Confucius4 中英双语模型（Base + Pro）。在翻译、摘要、写作等中英双语任务上达到「专业八级」水平，特别优化了科技文献翻译、商务邮件撰写、学术论文润色等专业场景。",
+    "tags": [
+      "ocr"
+    ],
+    "source": "网易有道 / GitHub",
+    "date": "2026-05-23",
+    "url": "https://github.com/netease-youdao/Confucius",
+    "content": "网易有道开源了 Confucius4 中英双语大模型，包含 Base 和 Pro 两个版本，在翻译质量上树立了新的开源标杆。\n\nConfucius4 在多个中英双语评测基准上达到「专业八级」水平（人工评测 4.7/5.0 分）。相比前代 Confucius3，翻译准确率提升 22%，尤其在中译英的「地道程度」上有显著改善——不再出现「翻译腔」，而是真正符合目标语言的自然表达习惯。\n\n特别优化的三个专业场景：科技文献翻译（准确处理专业术语和复杂句式，保留原文的学术严谨性）、商务邮件撰写（自动判断正式/非正式语气，选择合适的敬语和结尾）、学术论文润色（在保留原意的基础上提升英文表达的学术性和流畅度）。\n\n模型支持本地部署（最低 RTX 3060 可运行 Base 版）和 API 调用。有道同时开源了训练数据和评测基准，为学术研究和商业应用提供了完整的技术栈。对于跨国企业、科研团队和有翻译需求的开发者来说，Confucius4 是目前最值得尝试的开源翻译方案。"
+  },
+  {
+    "id": 31,
+    "featured": false,
+    "title": "国产 AI 芯片资本化加速：长鑫营收破 500 亿，长江存储启动科创板上市",
+    "summary": "国产半导体产业链集体崛起。长鑫存储 2026 年营收 508 亿元（+719%），净利润 330 亿元；长江存储实现 294 层 3D NAND 量产并启动科创板上市辅导。国产存储与算力芯片双线突围。",
+    "tags": [
+      "compute"
+    ],
+    "source": "各公司公告",
+    "date": "2026-05-22",
+    "url": "#",
+    "content": "算力离不开存储。2026 年 5 月，国产存储芯片厂商迎来历史性时刻。\n\n长鑫存储 2026 年营收 508 亿元，同比增长 719.13%，净利润 330 亿元。DDR5 内存芯片量产全面推进，良率已达 90%+，正在向 LPDDR5（移动端低功耗内存）和 HBM（高带宽内存，AI 芯片核心组件）方向拓展。长鑫的崛起正在打破三星、SK 海力士、美光对 DRAM 市场的三家垄断格局。\n\n长江存储已实现 294 层 3D NAND 闪存量产，并正式启动科创板上市辅导。294 层是目前全球 3D NAND 的最高层数之一，代表了存储密度和成本控制的前沿水平。长江存储的 Xtacking 架构在层数堆叠上具有技术优势。\n\n存储芯片国产化的意义不只在于供应安全，更在于成本。AI 芯片最大的成本构成不是逻辑芯片本身，而是 HBM 高带宽内存（占 BOM 成本的 50-60%）。国产 AI 芯片要真正实现性价比超越 NVIDIA，前提是国产 HBM 能够量产。长鑫的 HBM 研发进度和长江存储的 3D NAND 量产，为国产 AI 芯片的完全自主可控补上了关键短板。\n\n整个国产半导体产业链正在形成「芯片设计（海思/寒武纪/海光）→ 存储（长鑫/长存）→ 制造（中芯国际）→ 封装（长电科技）」的完整闭环。"
+  },
+  {
+    "id": 32,
+    "featured": false,
+    "title": "东数西算 2026 年度报告：八大枢纽累计投产算力超 2000 PFLOPS",
+    "summary": "2026 年「东数西算」工程进入全面建设期，八大国家算力枢纽节点累计投产算力超 2000 PFLOPS。西部绿电使用比例达 70%+，平均 PUE 降至 1.25。全国算力调度平台进入联调阶段。",
+    "tags": [
+      "compute"
+    ],
+    "source": "工信部",
+    "date": "2026-05-22",
+    "url": "#",
+    "content": "2026 年 5 月，「东数西算」工程发布年度进展报告，八大国家算力枢纽节点建设全面提速。\n\n核心数据：八大枢纽节点（京津冀、长三角、粤港澳、成渝、内蒙古、贵州、甘肃、宁夏）累计投产算力超 2000 PFLOPS（FP16），较 2025 年底增长约 60%。其中西部地区（内蒙古、贵州、甘肃、宁夏）的算力增速最快，绿电使用比例达到 70% 以上，平均 PUE 降至 1.25（优于 1.3 的国家标准）。\n\n分工格局日益清晰：东部枢纽（京津冀、长三角、粤港澳）聚焦低延迟推理和实时 AI 服务，网络延迟控制在 5ms 以内；西部枢纽承担大规模离线训练、模型归档和冷数据存储，利用低成本绿电优势。成渝枢纽则兼顾训练与推理，作为东西部之间的算力调度桥梁。\n\n全国算力调度平台已进入联调阶段，目标是实现八大枢纽之间的算力资源统一调度。用户提交 AI 训练任务后，平台可根据各节点的实时负载、电价、网络延迟自动选择最优执行节点。\n\n沙利文预测，到 2030 年中国智算中心总规模将超过 10000 PFLOPS。从目前的进度来看，这一目标有望提前实现。"
+  },
+  {
+    "id": 33,
+    "featured": false,
+    "title": "智算中心液冷技术：冷板式 vs 浸没式，PUE 从 1.4 到 1.1 的实现路径",
+    "summary": "大型智算中心液冷散热已从可选项变为必选项。冷板式液冷可实现单机柜 50kW+ 散热，相比风冷节能 40%；浸没式液冷效果更好但成本高 3-5 倍。PUE 优化成为算力成本控制的关键。",
+    "tags": [
+      "compute"
+    ],
+    "source": "技术白皮书",
+    "date": "2026-05-21",
+    "url": "#",
+    "content": "随着单机柜功率密度突破 30kW（AI 训练集群甚至达到 50kW+），传统风冷散热已触及物理极限。液冷散热从「高端选项」变为「事实标准」。\n\n当前主流的两种液冷方案：\n\n冷板式液冷：在 CPU/GPU 等发热元件上安装液冷板，通过冷却液带走热量。优点是技术成熟、改造成本低（可在现有数据中心基础上加装）、单机柜散热能力 50kW+。缺点是仅冷却主要芯片，其他元件仍需风冷。PUE 可降至 1.15-1.2。\n\n浸没式液冷：将整个服务器浸泡在绝缘冷却液中。优点是散热效率最高、无风扇噪音、硬件寿命更长（无氧化和灰尘）、PUE 可降至 1.05-1.1。缺点是成本高（冷却液 + 专用机柜，初期投资是冷板式的 3-5 倍）、维护不便（拔插硬件要先排液）。\n\n选型建议：200 卡以下的中小规模集群选冷板式即可，性价比最优；500 卡以上的大规模训练集群考虑浸没式，长期 TCO 反而更低（省下的电费可覆盖初期溢价）；边缘节点建议继续使用风冷或单相浸没。\n\n国内方面，曙光数创、英维克、高澜股份等企业在液冷领域技术领先，已参与多个东数西算枢纽的液冷系统建设。"
+  },
+  {
+    "id": 34,
+    "featured": false,
+    "title": "NVIDIA H200 vs 昇腾 910C vs 寒武纪 MLU590：2026 算力芯片全景对比",
+    "summary": "2026 年 AI 训练芯片三足鼎立：NVIDIA H200 仍是性能标杆但供应受限；华为昇腾 910C 生态差距缩至 60%；寒武纪 MLU590 在推理场景性价比突出。三方在 BF16/FP8/INT4 等不同精度下的详细对比。",
+    "tags": [
+      "compute"
+    ],
+    "source": "行业评测",
+    "date": "2026-05-20",
+    "url": "#",
+    "content": "2026 年 AI 训练芯片市场格局正在发生深刻变化，三款代表性芯片的竞争态势如下：\n\nNVIDIA H200（Hopper 架构）：141GB HBM3e 显存，带宽 4.8TB/s，BF16 算力 989 TFLOPS。仍是绝对的性能标杆，CUDA 生态成熟度无可匹敌。但受出口管制影响，中国区供货受限且价格高企。适合对性能要求极高且能获取供应的场景。\n\n华为昇腾 910C（达芬奇架构）：128GB HBM2e 显存，BF16 算力约 320 TFLOPS。通过 CANN 软件栈和 MindSpore 框架的持续优化，主流模型（Llama、Qwen、DeepSeek）的适配完成度已达 90%+。在 BF16 训练场景下性能约为 H200 的 75-85%，但在 FP8 推理场景差距缩小至 10-15%。最大优势是供应链自主可控和国产生态兼容性。\n\n寒武纪 MLU590（MLUarch04 架构）：64GB HBM2e 显存，INT8 算力 512 TOPS。在推理（特别是 INT4/INT8 精度）场景下性价比最优，单卡推理吞吐量接近 H200 的 80%，但价格仅为 H200 的 1/5。训练场景仍不及昇腾，但在轻量微调和 LoRA 场景表现不错。\n\n综合建议：训练首选昇腾 910C（国产替代最成熟方案）；推理首选寒武纪 MLU590（性价比最优）；如果预算充足且能买到，H200 仍是综合性能标杆。多芯片混合部署（训练用昇腾、推理用寒武纪）正在成为国内智算中心的主流方案。"
+  }
+]

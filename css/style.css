@@ -1,0 +1,342 @@
+/* GDS AI 速报 - 简约科技报刊风 */
+
+:root {
+    --bg-color: #F7F8FA;
+    --card-bg: #FFFFFF;
+    --text-color: #1E293B;
+    --sub-text: #64748B;
+    --border-color: #E8ECF1;
+    --accent: #0D6EFD;
+    --accent-light: #EFF6FF;
+    --tag-model: #2563EB;
+    --tag-skill: #0D9488;
+    --tag-compute: #7C3AED;
+    --tag-ocr: #DC2626;
+    --tag-model-bg: #EFF6FF;
+    --tag-skill-bg: #F0FDFA;
+    --tag-compute-bg: #F5F3FF;
+    --tag-ocr-bg: #FEF2F2;
+    --hero-bg: #0F172A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #E2E8F0;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 860px;
+    background: var(--bg-color);
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+/* ====== HERO ====== */
+.hero {
+    background: var(--hero-bg);
+    padding: 48px 32px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.08);
+    pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(13, 148, 136, 0.06);
+    pointer-events: none;
+}
+
+.hero-title {
+    font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: #94A3B8;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-stat-number {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #FFFFFF;
+}
+
+.hero-stat-label {
+    font-size: 0.8rem;
+    color: #94A3B8;
+    margin-top: 2px;
+}
+
+/* ====== CATEGORY TABS ====== */
+.tabs-wrapper {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.tabs {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    color: var(--sub-text);
+    cursor: pointer;
+    border: none;
+    background: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.tab:hover { color: var(--text-color); }
+
+.tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+}
+
+.tab-count {
+    font-size: 0.7rem;
+    color: var(--sub-text);
+    margin-left: 4px;
+}
+
+/* ====== WATERFALL GRID ====== */
+.content-area {
+    padding: 24px;
+}
+
+.waterfall-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    .waterfall-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2rem; }
+    .hero-stats { gap: 28px; }
+    .hero-stat-number { font-size: 1.4rem; }
+}
+
+/* ====== CARD ====== */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+    border-color: #CBD5E1;
+}
+
+.card-tags {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.card-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.card-tag.model { color: var(--tag-model); background: var(--tag-model-bg); }
+.card-tag.skill { color: var(--tag-skill); background: var(--tag-skill-bg); }
+.card-tag.compute { color: var(--tag-compute); background: var(--tag-compute-bg); }
+.card-tag.ocr { color: var(--tag-ocr); background: var(--tag-ocr-bg); }
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-summary {
+    font-size: 0.85rem;
+    color: var(--sub-text);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-source {
+    font-size: 0.75rem;
+    color: var(--sub-text);
+}
+
+.card-date {
+    font-size: 0.75rem;
+    color: #94A3B8;
+}
+
+/* ====== FEATURED ARTICLE (Hero style in content) ====== */
+.featured-card {
+    grid-column: 1 / -1;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent);
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 24px;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.featured-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.featured-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.featured-title {
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.featured-summary {
+    font-size: 0.9rem;
+    color: var(--sub-text);
+    line-height: 1.6;
+}
+
+/* ====== FOOTER ====== */
+.footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border-color);
+    color: var(--sub-text);
+    font-size: 0.8rem;
+    background: #FFFFFF;
+}
+
+.footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.footer-links {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* ====== EMPTY STATE ====== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--sub-text);
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.empty-state-text {
+    font-size: 0.9rem;
+}
+
+/* ====== UPDATED BADGE ====== */
+.updated-badge {
+    display: inline-block;
+    background: #FEF3C7;
+    color: #B45309;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 6px;
+}
