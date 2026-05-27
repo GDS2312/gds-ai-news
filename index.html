@@ -363,7 +363,7 @@
 
         function renderAll() {
             const filtered = currentFilter === 'all'
-                ? articles
+                ? articles.filter(a => !a.tags.includes('other'))
                 : articles.filter(a => a.tags.includes(currentFilter));
 
             if (filtered.length === 0) {
