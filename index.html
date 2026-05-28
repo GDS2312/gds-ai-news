@@ -345,7 +345,7 @@
             }
             // 尝试 fetch 获取可能更新的数据
             try {
-                const resp = await fetch('data/articles.json?v=5');
+                const resp = await fetch('data/articles.json?v=6');
                 if (resp.ok) {
                     const fresh = await resp.json();
                     if (fresh.length) articles = fresh;
